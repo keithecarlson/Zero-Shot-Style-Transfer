@@ -7,16 +7,17 @@ import subprocess
 
 
 
-def tokenizeFile(input_file_path,output_file_path,subWordList):
+def tokenizeFile(scriptDir,input_file_path,output_file_path,subWordList):
 	
-	return subprocess.call(['python','subword-nmt-master\\apply_bpe.py','-c', subWordList, '--input', input_file_path,'--output',output_file_path], shell=False)
+	return subprocess.call(['python',os.path.join(scriptDir,'subword-nmt-master','apply_bpe.py'),'-c', subWordList, '--input', input_file_path,'--output',output_file_path], shell=False)
 
  
 if __name__ == '__main__': 
 
-	inputDir = sys.argv[1]
-	outputDir = sys.argv[2]
-	subWordList = sys.argv[3]
+	pathToSubwordNMT = sys.argv[1]
+	inputDir = sys.argv[2]
+	outputDir = sys.argv[3]
+	subWordList = sys.argv[4]
 
 	
 	threadCount = 3
@@ -34,7 +35,7 @@ if __name__ == '__main__':
 			input_file_path = os.path.join(root, file)
 			output_file_path = os.path.join(root, file).replace(inputDir,outputDir)
 			if not os.path.exists(output_file_path):
-				r = pool.apply_async(tokenizeFile, args = (input_file_path,output_file_path,subWordList))  
+				r = pool.apply_async(tokenizeFile, args = (pathToSubwordNMT,input_file_path,output_file_path,subWordList))  
 				
 				
 	pool.close()

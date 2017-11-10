@@ -4,16 +4,16 @@
 
 [GENERAL]
 ### directory of repository
-repository-dir = /home/kcarlson/Zero-Shot-Style-Transfer/
+repository-dir = /home/kcarlson/Zero-Shot-Style-Transfer
 
 ### directory in which experiment is run
 #
 working-dir = $repository-dir/mosesBibleStyle/
 
 # specification of the language pair
-input-extension = orig
+input-extension = sourc
 output-extension = tgt
-pair-extension = orig-tgt
+pair-extension = sourc-tgt
 
 ### directories that contain tools and data
 # 
@@ -30,7 +30,7 @@ moses-script-dir = $moses-src-dir/scripts
 external-bin-dir = $moses-src-dir/mgiza/mgizapp/bin
 
 # data
-bible-data = $working-dir/MosesSamples
+bible-data = $repository-dir/Data/Sample/MosesSamples
 
 ### basic tools
 #

@@ -23,7 +23,7 @@ baseDataDir = os.path.join(repositoryDir,'Data')
 baseSampleOutDir = os.path.join(baseDataDir,'Sample')
 
 ##directory that holds data scripts used and also has subword-nmt directory with its scripts
-scriptDir = os.path.join(repositoryDir,'Scripts\createSamples')
+scriptDir = os.path.join(repositoryDir,'Scripts','createSamples')
 
 #directory with subwordNMT project with bpe code
 subWordNMTDir = os.path.join(scriptDir,'subword-nmt-master')
@@ -144,7 +144,7 @@ copyfile(os.path.join(testOutFolder,'zeroShotTest' + targetVersion + '.txt'),os.
 
 print "About to apply BPE vocab"
 
-subprocess.call(['python', os.path.join(scriptDir,'massApplyBPE.py'),sampleFolder,BPETokenizedDir,bpeCodeFileName])
+subprocess.call(['python', os.path.join(scriptDir,'massApplyBPE.py'),scriptDir,sampleFolder,BPETokenizedDir,bpeCodeFileName])
 
 
 

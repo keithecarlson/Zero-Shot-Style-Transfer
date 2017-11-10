@@ -72,7 +72,7 @@ def buildPossiblePairs(targetFolderName,sourceFolderName,exclude = []):
 	sourceFolder = os.path.join(sourceFolderName)
 	for root, subdirs, files in os.walk(targetFolder):
 		for file in files:
-			parts = root.split('\\')
+			parts = root.split(os.sep)
 			targetVersion,book,chapter = parts[-2],parts[-1],file
 			if book not in possiblePairs: 
 				possiblePairs[book] = {}
