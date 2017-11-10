@@ -8,10 +8,10 @@ Once you have the prerequsites installed and have cloned this repository you are
 
 Begin by opening createSample.py in the Scripts/createSamples directory and changing repositoryDir at the top of the file to point to your local repository.  You can now run this file which will produce a new directory "Sample" inside the Data directory.  It contains test, development, and training samples formatted for both MOSES and Seq2Seq.
 
-To train Moses, first open config.exp in Scripts/trainMoses and change repository-dir as above.  Now you are ready to start training the model with the command (changing the path to experiment.perl if needed).
+To train Moses, first create a directory within Zero-Shot-Style-Transfer called mosesBibleStyle.  Next open config.exp in Scripts/trainMoses and change repository-dir as above.  Now you are ready to start training the model with the command (changing the path to experiment.perl if needed).  From the mosesBibleStyle directory run:
 
 ```
-~/mosesdecoder/scripts/ems/experiment.perl -config config.exp -exec
+~/mosesdecoder/scripts/ems/experiment.perl -config ../Scripts/trainMoses/config.exp -exec
 ```
 
 This will eventually produce some output which we will look at later.
@@ -22,7 +22,7 @@ To train seq2seq, first set the path to this repository with a command like
 export REPO_DIR=/home/kcarlson/Zero-Shot-Style-Transfer/
 ```
 
-Then start the training with
+Then create a directory called seq2SeqBibleStyle within the repository.  Start the training with
 
 ```
 export MODEL_DIR=${REPO_DIR}/seq2SeqBibleStyle/
