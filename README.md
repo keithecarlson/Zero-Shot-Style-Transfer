@@ -2,7 +2,7 @@
 
 This repository contains code and data associated with XXXXXXXXX paper.
 
-To run the experiment described below you will need to first install Tensorflow 1.1(https://pypi.python.org/pypi/tensorflow/1.1.0), MOSES (http://www.statmt.org/moses/index.php?n=Main.HomePage), and seq2seq (https://github.com/google/seq2seq).
+To run the experiment described below you will need to first install Tensorflow 1.1(https://pypi.python.org/pypi/tensorflow/1.1.0), MOSES (http://www.statmt.org/moses/index.php?n=Main.HomePage), and seq2seq (https://github.com/google/seq2seq).  We also use subword-nmt (https://github.com/rsennrich/subword-nmt), but the code is replicated within this repository.
 
 Once you have the prerequsites installed and have cloned this repository you are ready to start.  In the paper we use 33 versions of the Bible, but only 6 of them are available in the public domain.  we will reproduce a smaller version of our experiment in this short tutorial.  We will train a model to translate from 'ASV' to 'BBE' despite never having seen any examples of this source->target pair.
 
@@ -84,32 +84,32 @@ python -m bin.infer \
   
 ```
 
-The output decoding with seq2seq will likely contain some subword units.  To replace these and get more natural looking text use
+The output from decoding with seq2seq will likely contain some subword units.  To replace these and get more natural looking text use
 
 ```
 sed -i 's/@@ //g' ${PRED_DIR}/predictions.txt
 ```
 
-You should now have the output of seq2seq checkpoints that you've decoded in seq2SeqBibleStyle/decodingResults and the output of Moses in mosesBibleStyle/evaluation/Test.cleaned.1.  You can evaluate these outputs with the PINC and BLEU metrics, the scripts for which I've taken from (https://github.com/harsh19/Shakespearizing-Modern-English) and included in the Scripts/evaluation directory.  To see how closely moses output resembles the target output 
+You should now have the output of seq2seq checkpoints that you've decoded in seq2SeqBibleStyle/decodingResults and the output of Moses in mosesBibleStyle/evaluation/Test.cleaned.1.  You can evaluate these outputs with the PINC and BLEU metrics. These scripts are originally from Moses and I've taken from (https://github.com/harsh19/Shakespearizing-Modern-English) and included in the Scripts/evaluation directory.  To see how closely moses output resembles the target output use:
 
 ```
-perl multi-bleu.perl Data/MosesSamples/test.tgt < mosesBibleStyle/evaluation/Test.cleaned.1
+perl Scripts/evaluate/multi-bleu.perl Data/Sample/MosesSamples/test.tgt < mosesBibleStyle/evaluation/Test.cleaned.1
 ```
 
-or for the seq2seq output
+Note that this cleaned output will be followed by "1" only if the training was completed the first time the command was issued.  Be sure to use the final output if there were multiple steps run.  For for the seq2seq output:
 
 ```
-perl multi-bleu.perl Data/MosesSamples/test.tgt <  ${PRED_DIR}/predictions.txt
+perl Scripts/evaluate/multi-bleu.perl Data/Sample/MosesSamples/test.tgt <  ${PRED_DIR}/predictions.txt
 ```
 
-To see how distant they are from the source sentence (PINC) use
+To see how distant they are from the source sentence (PINC) use:
 
 ```
-perl PINC.perl Data/MosesSamples/test.sourc <  mosesBibleStyle/evaluation/Test.cleaned.1
+perl Scripts/evaluate/PINC.perl Data/Sample/MosesSamples/test.sourc <  mosesBibleStyle/evaluation/Test.cleaned.1
 ```
 
-or
+or:
 
 ```
-perl PINC.perl Data/MosesSamples/test.sourc <  ${PRED_DIR}/predictions.txt
+perl Scripts/evaluate/PINC.perl Data/Sample/MosesSamples/test.sourc <  ${PRED_DIR}/predictions.txt
 ```
