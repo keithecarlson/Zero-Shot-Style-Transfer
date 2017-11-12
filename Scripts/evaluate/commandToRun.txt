@@ -1,5 +1,0 @@
-perl multi-bleu.perl Data/BPETokenized/devForMoses.en < Data/BPETokenized/devForMoses.sim
-
-perl PINC.perl Data/BPETokenized/devForMoses.en < Data/BPETokenized/devForMoses.sim
-
-don't forget to unbpe seq2seq output by replacing "@@ " with nothing
