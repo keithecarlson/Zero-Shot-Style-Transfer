@@ -1,8 +1,8 @@
-# Zero-Shot-Style-Transfer
-
 This repository contains code and data for some earlier work on a project which was published with a different title reflecting major changes to the work's direction.  The paper can be found at https://royalsocietypublishing.org/doi/full/10.1098/rsos.171920 and the repository associated with that work can be found at https://github.com/keithecarlson/StyleTransferBibleData.
 
 I have left this version, but you should check out the other project as well.  Any citations should be to the Royal Society paper.
+
+# Zero-Shot-Style-Transfer
 
 To run the experiment described below you will need to first install Tensorflow 1.1(https://pypi.python.org/pypi/tensorflow/1.1.0), MOSES (http://www.statmt.org/moses/index.php?n=Main.HomePage), and seq2seq (https://github.com/google/seq2seq).  We also use subword-nmt (https://github.com/rsennrich/subword-nmt), but the code is replicated within this repository.
 
